@@ -1,0 +1,6 @@
+Jinx,ADC,2,Jinx Elfa Buena,N,Jinx guardiana estelar,L
+Sett,TOP,1,Sett Puño del dragón,E
+Lillia,JG,1,Lillia flor espiritual,E
+Jhin,ADC,3,Jhin Solo ante el peligro,E,Jhin Luna sangrienta,E,Jhin Oscuridad cosmica,L
+Vex,MID,0
+Kaisa,ADC,2,Kda All Out,Exterminador galactico
