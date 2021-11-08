@@ -5,12 +5,14 @@ public class PersonajeU {
     private String nombre;
     private int cantS;
     ListaSkinsU lista;
+    ListaUsuarios listaU;
 
 
     public PersonajeU(String nombre, int cantS) {
         this.nombre = nombre;
         this.cantS = cantS;
         lista = new ListaSkinsU(10000);
+        listaU = new ListaUsuarios(10000);
     }
 
 
@@ -35,6 +37,18 @@ public class PersonajeU {
 
     public ListaSkinsU getLista() {
         return lista;
+    }
+
+
+    public ListaUsuarios getListaU() {
+        return listaU;
+    }
+
+
+    public void setListaU(ListaUsuarios listaU) {
+        this.listaU = listaU;
     }    
+
+   
 
 }

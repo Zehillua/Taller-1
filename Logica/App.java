@@ -29,8 +29,9 @@ public class App {
                 String linea = scan.nextLine();
                 String [] partes = linea.split(",");
                 String nombrePR = partes [0];
+                int rec = Integer.parseInt(partes[1]);
+                    
                 if(nombrePR.equals(nombre)){
-                    int rec = Integer.parseInt(partes[partes.length-1]);
                     sistema.ingresarPersonaje(nombre, rol, cantS, rec);
                     
                 }
@@ -69,7 +70,7 @@ public class App {
             for(int i=6;i<partes.length-2;i++){
                 String nombreP = partes[i];
                 int cantS = Integer.parseInt(partes[i+1]);
-                sistema.ingresarPersonajeU(nombreP, cantS, nombre);
+                sistema.ingresarPersonajeU(nombreP, cantS, nombre, pass, nick, nivel, rp, cantP, region);
                 i+=2;
                 for(int j=i;j<cantS+i;j++){
                     String nombreS = partes[j];
@@ -204,13 +205,13 @@ public class App {
             System.out.println("1.Recaudacion de ventas por rol\n2.Recaudacion total de ventas por region\n3.Recaudacion de ventas por personaje\n4.Cantidad de personajes por cada rol\n5.Agregar personaje al juego\n6.Agregar skin al juego\n7.Bloqueo de un jugador\n8.Obtener cuentas de menor a mayor\n9.Cierre del menu");
             int opcion = Integer.parseInt(scan.nextLine());
             if(opcion == 1){
-
+                sistema.recaudacionDeVentasPorRol();
             }
             if(opcion == 2){
-                
+                sistema.recaudacionVentasPorRegion();
             }
             if(opcion == 3){
-                
+                sistema.recaudacionVentasPorPersonaje();
             }
             if(opcion == 4){
                 sistema.cantidadPersonajesRol();

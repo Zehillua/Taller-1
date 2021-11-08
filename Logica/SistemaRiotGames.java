@@ -5,7 +5,7 @@ public interface SistemaRiotGames {
     
     public void ingresarUsuario(String nombre, String pass, String nick, int nivel, int rp, int cantP, String region);
 
-    public void ingresarPersonajeU(String nombreP, int cantS, String nombre);
+    public void ingresarPersonajeU(String nombreP, int cantS, String nombre, String pass, String nick, int nivel, int rp, int cantP, String region);
 
     public void ingresarSkinU(String nombre, String nombreP);
 
@@ -36,6 +36,10 @@ public interface SistemaRiotGames {
     public void obtenerDatos(String nombre);
 
     public void recaudacionDeVentasPorRol();
+
+    public void recaudacionVentasPorRegion();
+
+    public void recaudacionVentasPorPersonaje();
 
     public void cantidadPersonajesRol();
 
