@@ -1,2 +1,6 @@
 Sett,500000
 Jhin,600000
+Jinx,300000
+Kaisa,350000
+Lillia,500000
+Vex,260000

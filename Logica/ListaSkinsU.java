@@ -38,7 +38,11 @@ public class ListaSkinsU {
         return cant;
     }
 
-    public SkinU getUsuarioI(int i){
+    public int setCant(int cant){
+        return cant;
+    }
+
+    public SkinU getSkinUI(int i){
         if(i>=0 && i<=cant){
             return lista[i];
         }

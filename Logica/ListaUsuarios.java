@@ -47,17 +47,22 @@ public class ListaUsuarios{
     }
 
     public boolean eliminarUsuario(String nombre){
-        int indice = indexUsuario(nombre);
-        if(indice == -1){
-            return false;
+        int i;
+        for( i=0;i<cant;i++){
+            if(lista[i].getNombre().equals(nombre)){
+                break;
+            }
         }
-        else{
-            for(int i=indice;i<cant-1;i++){
-                lista[i]=lista[i+1];
+        if(i==cant){
+            return false;
+        }else{
+            for(int j = i;j<cant-1;j++){
+                lista[j] = lista[j+1];
             }
             cant--;
             return true;
         }
+
     }
 
     public int indexUsuario(String nombre){
@@ -70,6 +75,7 @@ public class ListaUsuarios{
         }
         return -1;
     }
+
 
 }
 

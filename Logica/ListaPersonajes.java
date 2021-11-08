@@ -12,7 +12,7 @@ public class ListaPersonajes {
         lista = new Personaje[max];
     }
 
-    public int getCant(int cant){
+    public int getCant(){
         return cant;
     }
 

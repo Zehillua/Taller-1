@@ -9,7 +9,8 @@ public class Usuario {
     private int cantP;
     //private boolean bloqueo;
     private String region;
-    ListaPersonajes lista;
+    ListaPersonajesU lista;
+    ListaSkinsU listaS;
 
     public Usuario(String nombre, String pass, String nick, int nivel, int rp, int cantP, String region){
         this.nombre = nombre;
@@ -20,7 +21,7 @@ public class Usuario {
         this.cantP=cantP;
         //this.bloqueo=bloqueo;
         this.region=region;
-        lista = new ListaPersonajes(155);
+        lista = new ListaPersonajesU(155);
     }
 
     public String getNombre() {
@@ -87,7 +88,12 @@ public class Usuario {
         this.region = region;
     }
 
-    public ListaPersonajes getLista() {
+    public ListaPersonajesU getLista() {
         return lista;
     }
+
+    public ListaSkinsU getListaS() {
+        return listaS;
+    }
+    
 }
