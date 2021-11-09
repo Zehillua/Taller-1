@@ -10,14 +10,16 @@ public class App {
         LecturaUsuario(sistema);
         inicioSesion(sistema);
         escritura(sistema);
-        
     }
-
+    /**
+     * Read the Personajes.txt and Estadisticas.txt files.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     * @throws IOException The IOException library is called.
+     */
     public static void LecturaPersonaje(SistemaRiotGames sistema)throws IOException{
         File fileP = new File("C://Users//ignac//Desktop//Código//Personajes.txt");
         Scanner scanP = new Scanner(fileP);
         while(scanP.hasNext()){
-            
             String lineaP = scanP.nextLine();
             String [] partesP = lineaP.split(",");
             String nombre = partesP[0];
@@ -30,28 +32,24 @@ public class App {
                 String [] partes = linea.split(",");
                 String nombrePR = partes [0];
                 int rec = Integer.parseInt(partes[1]);
-                    
                 if(nombrePR.equals(nombre)){
-                    sistema.ingresarPersonaje(nombre, rol, cantS, rec);
-                    
-                }
-               
-                    
+                    sistema.ingresarPersonaje(nombre, rol, cantS, rec);   
+                }   
             }
             for(int i=3;i<partesP.length;i++){
                 String nameSkin = partesP[i];
                 String calidad = partesP[i+1];
                 i++;
                 sistema.ingresarSkin(nameSkin, calidad,nombre);
-                //sistema.agregarSkinPersonaje(nombre, nameSkin, calidad);
-            }
-            
-              
+                
+            } 
         }
-        
-        
     }
-
+    /**
+     * Read the Cuentas.txt file.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     * @throws IOException The IOException library is called.
+     */
     public static void LecturaUsuario(SistemaRiotGames sistema)throws IOException{
         
         File file = new File("C://Users//ignac//Desktop//Código//Cuentas.txt");
@@ -70,19 +68,20 @@ public class App {
             for(int i=6;i<partes.length-2;i++){
                 String nombreP = partes[i];
                 int cantS = Integer.parseInt(partes[i+1]);
-                sistema.ingresarPersonajeU(nombreP, cantS, nombre, pass, nick, nivel, rp, cantP, region);
+                sistema.ingresarPersonajeU(nombreP, cantS, nombre);
                 i+=2;
                 for(int j=i;j<cantS+i;j++){
                     String nombreS = partes[j];
                     sistema.ingresarSkinU(nombreS, nombreP);
                 }
             }
-            
-            
         }
         scan.close();
     }
-    
+    /**
+     * The inicioSesion method is created to log into the system.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     */
     public static void inicioSesion(SistemaRiotGames sistema){
         Scanner scan = new Scanner(System.in);
         while(true){
@@ -107,7 +106,7 @@ public class App {
                     }
                 }
             }if(validarN == 2){
-                
+                System.out.println("Se cierra el sistema.");
                     break;
             }if(validarN == 3){
                     registroU(sistema);
@@ -116,12 +115,14 @@ public class App {
                     String pass = scan.nextLine();
                     if(pass.equals("ADMIN")){
                         menuAdmin(sistema);
-                    
                     }
             }
         }
     }
-
+    /**
+     * The method registerU is for the registration of the User to the system.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     */
     public static void registroU(SistemaRiotGames sistema){
       try{   
         Scanner scan = new Scanner(System.in);
@@ -149,7 +150,11 @@ public class App {
           System.out.println(e.getMessage());
       }
     }
-
+    /**
+     * The menuUsuario method is created to make a menu only for customers.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     * @param nombre It is the name with which the session started.
+     */
     public static void menuUsuario(SistemaRiotGames sistema, String nombre){
         Scanner scan = new Scanner(System.in);
         System.out.println("Bienvenido al menu del Usuario.");
@@ -168,7 +173,6 @@ public class App {
                     sistema.comprarSkin(nombreS, nombre, nombreP);
                     break;
                 }
-
             }
             if(opcionU == 2){
                 while(true){
@@ -196,7 +200,10 @@ public class App {
             }  
         }   
     }
-
+    /**
+     * The menuAdmin method is for the System Administrator who logged in.
+     * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+     */
     public static void menuAdmin(SistemaRiotGames sistema){
         Scanner scan= new Scanner(System.in);
         System.out.println("Bienvenido a su menu.");
@@ -234,16 +241,20 @@ public class App {
         }
 
      }
-     
+     /**
+      * Overwrites files read at system startup.
+      * @param sistema The sistema parameter is created to call sistemarueditasImpl.
+      * @throws IOException The IOException library is called.
+      */
      public static void escritura(SistemaRiotGames sistema)throws IOException{
         try{
-            //BufferedWriter cuentas = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Cuentass.txt")));
-            //cuentas.write(sistema.obtenerDatosCuentas());
-            //cuentas.close();
-            BufferedWriter personajes = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Personajess.txt")));
+            BufferedWriter cuentas = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Cuentas.txt")));
+            cuentas.write(sistema.obtenerDatosCuentas());
+            cuentas.close();
+            BufferedWriter personajes = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Personajes.txt")));
             personajes.write(sistema.obtenerDatosPersonajes());
             personajes.close();
-            BufferedWriter estadisticas = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Estadisticass.txt")));
+            BufferedWriter estadisticas = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C://Users//ignac//Desktop//Código//Estadisticas.txt")));
             estadisticas.close();
         }catch(NullPointerException e){
             System.out.println(e.getMessage());

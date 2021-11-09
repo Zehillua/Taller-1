@@ -8,7 +8,7 @@ public class Personaje {
     private int recaudacion;
     ListaSkins lista;
     
-    public Personaje(String nombre, String rol, int recaudacion, int cantS) {
+    public Personaje(String nombre, String rol, int cantS, int recaudacion) {
         this.nombre = nombre;
         this.rol = rol;
         this.cantS = cantS;

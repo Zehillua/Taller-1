@@ -29,6 +29,7 @@ public class SistemaRiotGamesImpl implements SistemaRiotGames {
     @Override
     public void ingresarUsuario(String nombre, String pass, String nick, int nivel, int rp, int cantP, String region) {
         Usuario u = new Usuario(nombre, pass, nick, nivel, rp, cantP, region);
+        PersonajeU pU = lPersonajesU.buscarPersonajeU(nombre);
         if(!lUsuarios.addUsuario(u)){
             throw new NullPointerException("Error al ingresar un Usuario");
             
@@ -157,11 +158,8 @@ public class SistemaRiotGamesImpl implements SistemaRiotGames {
                         u.setCantP(u.getCantP()+1);
                         u.setRp(u.getRp()-975);
                         u.setNivel(u.getNivel()+1);
-                        System.out.println(u.getNivel());
-                        System.out.println(u.getRp());
-                        for(int i=0;i<u.getLista().getCant();i++){
-                            System.out.println(u.getLista().getPersonajeUI(i).getNombre());
-                        }
+                        p.setRecaudacion(p.getRecaudacion()+975);
+                        System.out.println("Compra de personaje exitosa.");
                     }else{
                         System.out.println("Rp insuficiente.");
                     }
@@ -333,7 +331,7 @@ public class SistemaRiotGamesImpl implements SistemaRiotGames {
                             u.setRp(u.getRp()-precio);
                             pU.getLista().addSkinU(sU2);
                             pU.setCantS(pU.getCantS()+1);
-                            System.out.println(p.getRecaudacion());
+                            p.setRecaudacion(p.getRecaudacion()+precio);
                             System.out.println("Compra completa.");
                             break;
                         }else{
@@ -449,7 +447,7 @@ public class SistemaRiotGamesImpl implements SistemaRiotGames {
                         String newPass2 = scan.nextLine();
                         if(newPass.equals(newPass2)){
                             u.setPass(newPass2);
-                            System.out.println(u.getPass());
+                            System.out.println("Contraseña cambiada correctamente.");
                             break;
                         }else{
                             System.out.println("La nueva contraseña no coinciden.");
@@ -476,6 +474,52 @@ public class SistemaRiotGamesImpl implements SistemaRiotGames {
 
     @Override
     public void recaudacionDeVentasPorRol() {
+        double cantRecTOP = 0;
+        double cantRecJG = 0;
+        double cantRecMID = 0;
+        double cantRecSUP = 0;
+        double cantRecADC = 0;
+        int cantP = lPersonajes.getCant();
+        for(int i =0;i<cantP;i++){
+            Personaje p = lPersonajes.getPersonajeI(i);
+            if(p.getRol().equals("ADC")){
+                cantRecADC+=p.getRecaudacion();
+                
+            }
+            if(p.getRol().equals("TOP")){
+                cantRecTOP+=p.getRecaudacion();
+                
+            }
+            if(p.getRol().equals("JG")){
+                cantRecJG+=p.getRecaudacion();
+                
+            }
+            if(p.getRol().equals("MID")){
+                cantRecMID+=p.getRecaudacion();
+                
+            }
+            if(p.getRol().equals("SUP")){
+                cantRecSUP+=p.getRecaudacion();
+                
+        
+            }            
+        }
+        System.out.println("Cantidad de ventar por el rol:\nTOP: $"+cantRecTOP*6.15+"\nJG: $"+cantRecJG*6.15+"\nMID: $"+cantRecMID*6.15+"\nSUP: $"+cantRecSUP*6.15+"\nADC: $"+cantRecADC*6.15);
+        
+    }
+
+    
+
+    @Override
+    public void recaudacionVentasPorPersonaje() {
+        for(int i=0;i<lPersonajes.getCant();i++){
+            Personaje p = lPersonajes.getPersonajeI(i);
+            System.out.println("Recaudacion de personajes:\nPersonaje: "+p.getNombre()+" Recaudacion: $"+p.getRecaudacion()*6.15);
+        }        
+    }
+
+    @Override
+    public void recaudacionVentasPorRegion() {
         
         
     }
